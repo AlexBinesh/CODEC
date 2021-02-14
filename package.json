@@ -1,0 +1,54 @@
+{
+  "name": "prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js",
+    "devStartAuth": "nodemon authServer.js",
+    "TestHTTP": "nodemon CodecNetowrk/BankHQ_temp.js",
+
+
+    "Main": "nodemon CodecNetowrk/BankHQ.js",
+    "CodecStartAuth": "nodemon CodecNetowrk/CODEC_AuthServer.js", 
+    "CodecMainAPIStart": "nodemon CodecNetowrk/CODEC_Main_API.js",
+    "CodecAPI_1_Start": "nodemon CodecNetowrk/CODEC_API_1.js",
+    "CodecAPI_2_Start": "nodemon CodecNetowrk/CODEC_API_2.js",
+    "CodecAPI_3_Start": "nodemon CodecNetowrk/CODEC_API_3.js",
+
+    "CodecAPI_1": "nodemon CodecNetowrk/CODEC_API.js 8000",
+    "CodecAPI_2": "nodemon CodecNetowrk/CODEC_API.js 9000",
+    "CodecAPI_3": "nodemon CodecNetowrk/CODEC_API.js 10000",
+    "CodecAPI_4": "nodemon CodecNetowrk/CODEC_API.js 11000",
+    "CodecAPI_5": "nodemon CodecNetowrk/CODEC_API.js 12000",
+    "Main": "nodemon CodecNetowrk/BankHQ.js", 
+    "BranchAPI": "nodemon CodecNetowrk/BranchAPI.js", 
+
+    "//": "npm run Main ",
+    "//": "npm run CodecStartAuth ",
+    "//": "npm run CodecAPI_1 ",
+    "//": "npm run CodecAPI_2 ",
+    "//": "npm run CodecAPI_3 ",
+    "//": "npm run CodecAPI_4 ",
+    "//": "npm run CodecAPI_5 ",
+    "//": "npm run BranchAPI",
+    
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "jsbn": "^1.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "node-seal": "^4.3.10",
+    "nodemon": "^2.0.4",
+    "paillier-bigint": "^3.1.2",
+    "request": "^2.88.2",
+    "sizeof": "^1.0.0"
+  }
+}
