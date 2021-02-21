@@ -105,17 +105,17 @@ promise7.then(
                 }
                 
                 SendToNextNode (fields.AccToken,  fields.Auth_Serv_Add, encObject, NodeNums, NodeArray);
-                TimeOut = (NodeNums+1 )* 5000;
-//                console.log ("111111111111111111 AFTER SendToNextNode: Waiting to Receive in : "+ TimeOut )  
+                TimeOut = (NodeNums+1 )* 6000;
+                console.log ("111111111111111111 AFTER SendToNextNode: Waiting to Receive in : "+ TimeOut )  
 
-                setTimeout(() => resolve(EncryptedObject), TimeOut);
+                setTimeout(() => resolve(encObject), TimeOut);
                 
              });
              promise6.then(
                   result => {
-//                    console.log('CodecAPI- 1 :: Returning to the PREVIOUS Node' );
+                    console.log('CodecAPI- 1 :: Returning to the PREVIOUS Node' );
 
-                  res.json({ RetVal: encObject.TempcipherText });  
+                  res.json({ RetVal: BranchName+','+encObject.TempcipherText });  
                 }
               );  
 
@@ -223,6 +223,7 @@ if (Auth_Serv_Add == null ) return 402;
           )
           .catch(error => {
             console.log('Axios Error', error.message)
+            return;
           })
 //          console.log ("101010101010 SendToNextNode: This is the NodeAdress 6: " )  
 
@@ -230,7 +231,7 @@ if (Auth_Serv_Add == null ) return 402;
        });    
         promise2.then(
           result => {
-//            console.log("In SendToNextNode- 2 :: promise2 then .: " )      
+            console.log("In SendToNextNode- 2 :: promise2 then .: " )      
 
           },
         );  

@@ -44,12 +44,12 @@ app.get('/GetAcctBal',async(req,res)=>{
       ReturnedNodes = response.data.RetValue;
 
       FirstNode = ReturnedNodes[0].url+":"+ReturnedNodes[0].port+"/"+ReturnedNodes[0].api
-      BranchList = ReturnedNodes[0].branch;
+//      BranchList = ReturnedNodes[0].branch;
       for( i = 1 ; i < ReturnedNodes.length ; i++){
 //        console.log("1111111111111 NodeAddresses: " + NodeAddresses);
         NodeIndex = i-1; 
         NodeAddresses[NodeIndex]= ReturnedNodes[i].url+":"+ReturnedNodes[i].port+"/"+ReturnedNodes[i].api;
-        BranchList += "," + ReturnedNodes[i].branch;
+//        BranchList += "," + ReturnedNodes[i].branch;
 //        console.log("This is the BranchList: " + BranchList);
 //        console.log("This is the row: " + ReturnedNodes[i].url+":"+ReturnedNodes[i].port+"/"+ReturnedNodes[i].api);
       }
@@ -81,17 +81,17 @@ app.get('/GetAcctBal',async(req,res)=>{
         RanNum = RanNum.toFixed();
         console.log("-------CodecCreateToken:: This is the Randon Number I am sending: " + RanNum)      
         let promise1 = new Promise(function(resolve, reject) {
-  try{
-    EncObj =  EncryptInput(EncryptedObject, RanNum);
-    setTimeout(() => resolve(EncryptedObject), 1000);
-  } catch (error) {
-    console.log("Caught this error: " + error)      
-  }
-});
-promise1.then(
-  result => {
-    let promise2 = new Promise(function(resolve, reject) {
-      
+        try{
+          EncObj =  EncryptInput(EncryptedObject, RanNum);
+          setTimeout(() => resolve(EncryptedObject), 1000);
+        } catch (error) {
+          console.log("Caught this error: " + error)      
+        }
+      });
+      promise1.then(
+        result => {
+          let promise2 = new Promise(function(resolve, reject) {
+            
       try{
         var FormData = require('form-data')
         data = new FormData();
@@ -126,9 +126,18 @@ promise1.then(
               headers: formHeaders
             })
             .then(response => {
-//              console.log('++++++++++++++++Got back from server ' + response.data.RetVal)
-              EncryptedObject.cipherText = response.data.RetVal;
-
+              RetString = response.data.RetVal;
+              var RespArray = RetString.split(',');
+              //console.log('Name Array is: ' + RespArray);
+//              console.log('Token back from server is: ' + RespArray[RespArray.length -1]);
+              console.log('First Branch: ' + RespArray[0]);
+              console.log('Second Branch: ' + RespArray[1]);
+              //console.log('++++++++++++++++Got back from server ' + response.data.RetVal)
+              //return;
+//              EncryptedObject.cipherText = response.data.RetVal;
+              EncryptedObject.cipherText = RespArray[RespArray.length -1];
+              BranchList = RespArray[RespArray.length -1] = '';
+              console.log('This is the branch list: ' + BranchList);
              let promise5 = new Promise(function(resolve, reject) {
 //                console.log('CodecAPI- 1 :: promise5 ' );
                 Subtotal = ReturnBal(EncryptedObject);
